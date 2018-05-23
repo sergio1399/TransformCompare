@@ -15,15 +15,27 @@ public class XMLError{
     private int lineNumber;
 
     /**
+     * Номер колонки в которой была ошибка
+     */
+    private int columnNumber;
+
+    /**
      * Нод в файле
      */
     private Node node;
 
     /**
      *
+     * Сообщение ошибки
+     */
+    private String message;
+
+    /**
+     *
      * Тип ошибки
      */
-    private String type;
+    private ErrorType type;
+
 
     public String getXpath() {
         return xpath;
@@ -49,11 +61,35 @@ public class XMLError{
         this.node = node;
     }
 
-    public String getType() {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getColumnNumber() {
+        return columnNumber;
+    }
+
+    public void setColumnNumber(int columnNumber) {
+        this.columnNumber = columnNumber;
+    }
+
+    public ErrorType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ErrorType type) {
         this.type = type;
     }
+
+    public XMLError() {
+    }
+
+    public XMLError(ErrorType type) {
+        this.type = type;
+    }
+
 }
