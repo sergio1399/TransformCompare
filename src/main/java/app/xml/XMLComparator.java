@@ -1,8 +1,6 @@
 package app.xml;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,7 +23,6 @@ import java.util.*;
 
 public class XMLComparator {
 
-    private static final Logger log = LoggerFactory.getLogger(XMLComparator.class);
 
     private static String lineNumAttribName = "lineNumber";
     private static String columnNumAttribName = "columnNumber";
@@ -76,7 +73,7 @@ public class XMLComparator {
      * @throws SAXException
      */
 
-    private static XMLCompareResult diff(InputStream inputControl, InputStream inputTest)
+    public static XMLCompareResult diff(InputStream inputControl, InputStream inputTest)
             throws IOException, SAXException, ParserConfigurationException {
         Document control = parseXML(inputControl);
         Document test = parseXML(inputTest);
@@ -91,10 +88,23 @@ public class XMLComparator {
      * @param second
      * @return результат сравнения
      */
-    private static XMLCompareResult diff(Document first, Document second) {
+    public static XMLCompareResult diff(Document first, Document second) {
         XMLCompareResult result = new XMLCompareResult();
         result.setErrors(new ArrayList<MyPair<XMLError>>());
         result.setWarnings(new ArrayList<MyPair<XMLError>>());
+
+        /*Diff atrDiff = DiffBuilder.
+                compare(first).
+                withTest(second).
+                withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byNameAndAllAttributes)).build();
+        for (Difference difference : atrDiff.getDifferences()) {
+
+            if (difference.getResult() == ComparisonResult.SIMILAR) {
+                addFault(first, second, result.getWarnings(), difference);
+            } else if (difference.getResult() == ComparisonResult.DIFFERENT) {
+                addFault(first, second, result.getErrors(), difference);
+            }
+        }    */
 
         Diff detDiff = DiffBuilder.
                 compare(first).
@@ -102,6 +112,7 @@ public class XMLComparator {
                 withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byNameAndText)).build();
 
         for (Difference difference : detDiff.getDifferences()) {
+
             if (difference.getResult() == ComparisonResult.SIMILAR) {
                 addFault(first, second, result.getWarnings(), difference);
             } else if (difference.getResult() == ComparisonResult.DIFFERENT) {
@@ -245,7 +256,7 @@ public class XMLComparator {
                 return nl.item(0);
             }
         } catch (XPathExpressionException e) {
-            log.error("Не удаётся найти путь: " + path);
+
         }
         return null;
     }
