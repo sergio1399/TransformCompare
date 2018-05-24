@@ -8,13 +8,13 @@ public class XMLCompareResult {
     /**
      * Список ошибок.
      */
-    private List<MyPair<XMLError>> errors;
+    private List<XMLError> errors;
 
     /**
      * Список предупреждений.
      * Например: XML-файлы могут быть равны, но иметь разный порядок нодов.
      */
-    private List<MyPair<XMLError>> warnings;
+    private List<XMLError> warnings;
 
     public XMLCompareResult() {
         errors = new ArrayList<>();
@@ -29,19 +29,19 @@ public class XMLCompareResult {
         return errors.isEmpty() && warnings.isEmpty();
     }
 
-    public List<MyPair<XMLError>> getErrors() {
+    public List<XMLError> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<MyPair<XMLError>> errors) {
+    public void setErrors(List<XMLError> errors) {
         this.errors = errors;
     }
 
-    public List<MyPair<XMLError>> getWarnings() {
+    public List<XMLError> getWarnings() {
         return warnings;
     }
 
-    public void setWarnings(List<MyPair<XMLError>> warnings) {
+    public void setWarnings(List<XMLError> warnings) {
         this.warnings = warnings;
     }
 }

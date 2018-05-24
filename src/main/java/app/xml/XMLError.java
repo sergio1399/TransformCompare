@@ -10,6 +10,11 @@ public class XMLError{
     private String xpath;
 
     /**
+     * XPath до нода в xml-файле не включая сам нод
+     */
+    private String parentXPath;
+
+    /**
      * Номер строки в xml
      */
     private int lineNumber;
@@ -36,6 +41,25 @@ public class XMLError{
      */
     private ErrorType type;
 
+    /**
+     *
+     * XML источник
+     */
+    private String source;
+
+    /**
+     *
+     * Тип сравнения
+     */
+    private ComparisonType comparisonType;
+
+    public String getParentXPath() {
+        return parentXPath;
+    }
+
+    public void setParentXPath(String parentXPath) {
+        this.parentXPath = parentXPath;
+    }
 
     public String getXpath() {
         return xpath;
@@ -85,6 +109,14 @@ public class XMLError{
         this.type = type;
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
     public XMLError() {
     }
 
@@ -92,4 +124,11 @@ public class XMLError{
         this.type = type;
     }
 
+    public ComparisonType getComparisonType() {
+        return comparisonType;
+    }
+
+    public void setComparisonType(ComparisonType comparisonType) {
+        this.comparisonType = comparisonType;
+    }
 }

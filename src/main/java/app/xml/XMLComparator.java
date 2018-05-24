@@ -74,9 +74,22 @@ public class XMLComparator {
      */
 
     public static XMLCompareResult diff(InputStream inputControl, InputStream inputTest)
-            throws IOException, SAXException, ParserConfigurationException {
-        Document control = parseXML(inputControl);
-        Document test = parseXML(inputTest);
+            throws IOException{
+        Document control = null;
+        Document test = null;
+        try {
+            control = parseXML(inputControl);
+            test = parseXML(inputTest);
+        }
+        catch (SAXException e){
+            e.printStackTrace();
+            return null;
+        }
+        catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            return null;
+        }
+
         return diff(control, test);
     }
 
@@ -90,37 +103,20 @@ public class XMLComparator {
      */
     public static XMLCompareResult diff(Document first, Document second) {
         XMLCompareResult result = new XMLCompareResult();
-        result.setErrors(new ArrayList<MyPair<XMLError>>());
-        result.setWarnings(new ArrayList<MyPair<XMLError>>());
-
-        /*Diff atrDiff = DiffBuilder.
-                compare(first).
-                withTest(second).
-                withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byNameAndAllAttributes)).build();
-        for (Difference difference : atrDiff.getDifferences()) {
-
-            if (difference.getResult() == ComparisonResult.SIMILAR) {
-                addFault(first, second, result.getWarnings(), difference);
-            } else if (difference.getResult() == ComparisonResult.DIFFERENT) {
-                addFault(first, second, result.getErrors(), difference);
-            }
-        }    */
+        result.setErrors(new ArrayList<XMLError>());
+        result.setWarnings(new ArrayList<XMLError>());
 
         Diff detDiff = DiffBuilder.
                 compare(first).
                 withTest(second).
-                withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byNameAndText)).build();
-
+                withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byName)).build();
         for (Difference difference : detDiff.getDifferences()) {
-
             if (difference.getResult() == ComparisonResult.SIMILAR) {
                 addFault(first, second, result.getWarnings(), difference);
             } else if (difference.getResult() == ComparisonResult.DIFFERENT) {
                 addFault(first, second, result.getErrors(), difference);
             }
         }
-        clearExtraErrors(result.getErrors());
-
         return result;
     }
 
@@ -129,9 +125,9 @@ public class XMLComparator {
      * @param error
      * @return
      */
-    private static boolean hasAttrAndTextErrors(MyPair<XMLError> error) {
-        String xpathFirst = error.getFirst().getXpath();
-        String xpathSecond = error.getSecond().getXpath();
+    private static boolean hasAttrAndTextErrors(XMLError error) {
+        String xpathFirst = error.getXpath();
+        String xpathSecond = error.getXpath();
         if (xpathFirst != null && xpathSecond != null && xpathFirst.equals(xpathSecond) &&
                 !xpathFirst.contains("@") && !xpathFirst.contains("()")) {
             return true;
@@ -144,13 +140,13 @@ public class XMLComparator {
      * @param error
      * @return
      */
-    private static boolean hasAppHdrErrors(MyPair<XMLError> error) {
+    private static boolean hasAppHdrErrors(XMLError error) {
 
-        String xpathFirst = error.getFirst().getXpath();
-        String xpathSecond = error.getSecond().getXpath();
+        String xpathFirst = error.getXpath();
+        String xpathSecond = error.getXpath();
         if (xpathFirst != null && xpathSecond != null) {
-            Element firstNode = (Element) error.getFirst().getNode();
-            Element secondNode = (Element) error.getSecond().getNode();
+            Element firstNode = (Element) error.getNode();
+            Element secondNode = (Element) error.getNode();
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
 
             try {
@@ -174,10 +170,10 @@ public class XMLComparator {
      *
      * @param errors список ошибок
      */
-    private static void clearExtraErrors(List<MyPair<XMLError>> errors) {
-        Iterator<MyPair<XMLError>> iterator = errors.iterator();
+    private static void clearExtraErrors(List<XMLError> errors) {
+        Iterator<XMLError> iterator = errors.iterator();
         while (iterator.hasNext()) {
-            MyPair<XMLError> error = iterator.next();
+            XMLError error = iterator.next();
 
             if (hasAttrAndTextErrors(error)) {
                 iterator.remove();
@@ -200,23 +196,60 @@ public class XMLComparator {
      * @param difference результат сравнения двух документов, переданных в первых 2-х параметрах
      */
     private static void addFault(Document docFirst, Document docSecond,
-                                 List<MyPair<XMLError>> faults,
+                                 List<XMLError> faults,
                                  Difference difference) {
         XMLError faultControl = new XMLError();
         XMLError faultTest = new XMLError();
+        String controlParentPath = "";
+        String testParentPath = "";
+        boolean needToAdd = true;
 
         if (difference.getComparison().getControlDetails() != null
                 && difference.getComparison().getControlDetails().getXPath() != null) {
-            String path = difference.getComparison().getControlDetails().getXPath();
-            faultControl = fillFault(docFirst, path, ErrorType.NOT_XML);
+            String path = removeAttrAndTextFromXPath( difference.getComparison().getControlDetails().getXPath() );
+            controlParentPath = removeAttrAndTextFromXPath( difference.getComparison().getControlDetails().getParentXPath() );
+            //предотвращаем дублирование ошибки отсутствия тэга
+            ComparisonType type = difference.getComparison().getType();
+            ErrorType errorType = comparisonToError(type);
+            if( type == ComparisonType.CHILD_NODELIST_LENGTH ||
+                type == ComparisonType.ELEMENT_NUM_ATTRIBUTES){
+                needToAdd = false;
+            }
+
+            String message = difference.getComparison().toString();
+            if( needToAdd ) {
+                faultControl = fillFault(docFirst, path, controlParentPath, errorType, message, type);
+                faults.add(faultControl);
+            }
         }
+        needToAdd = true;
         if (difference.getComparison().getTestDetails() != null
                 && difference.getComparison().getTestDetails().getXPath() != null) {
-            String path = difference.getComparison().getTestDetails().getXPath();
-            faultTest = fillFault(docSecond, path, ErrorType.NOT_XML);
+            String path = removeAttrAndTextFromXPath(difference.getComparison().getTestDetails().getXPath());
+            testParentPath = removeAttrAndTextFromXPath(difference.getComparison().getTestDetails().getParentXPath());
+            //предотвращаем дублирование ошибки отсутствия тэга
+            ComparisonType type = difference.getComparison().getType();
+            ErrorType errorType = comparisonToError(type);
+            String message = difference.getComparison().toString();
+            if( type == ComparisonType.CHILD_NODELIST_LENGTH ||
+                type == ComparisonType.ELEMENT_NUM_ATTRIBUTES){
+                needToAdd = false;
+            }
+
+            if( (/*type == ComparisonType.CHILD_LOOKUP ||*/ type == ComparisonType.TEXT_VALUE || type == ComparisonType.ATTR_NAME_LOOKUP)  ){
+                for (XMLError xmlError : faults) {
+                    if(xmlError.getParentXPath().equals(testParentPath) || (type == ComparisonType.ATTR_NAME_LOOKUP && xmlError.getXpath().equals(path) )  ) {
+                        needToAdd = false;
+                        break;
+                    }
+                }
+            }
+            if( needToAdd ) {
+                faultTest = fillFault(docSecond, path, testParentPath, errorType, message, type);
+                faults.add(faultTest);
+            }
         }
 
-        faults.add(new MyPair<XMLError>(faultControl, faultTest));
     }
 
     /**
@@ -226,15 +259,18 @@ public class XMLComparator {
      * @param path Путь в виде xpath до элемента.
      * @return заполненное несоответствие
      */
-    private static XMLError fillFault(Document doc, String path, ErrorType type) {
+    private static XMLError fillFault(Document doc, String path, String parentPath, ErrorType type, String message, ComparisonType comparisonType) {
         XMLError fault = new XMLError(type);
         fault.setXpath(path);
+        fault.setParentXPath(parentPath);
 
         Node node = findNodeByXPath(doc, removeAttrAndTextFromXPath(path));
         fault.setNode(node);
         fault.setLineNumber(getUserDataInt(node, lineNumAttribName));
         fault.setColumnNumber(getUserDataInt(node, columnNumAttribName));
-
+        fault.setSource(doc.getDocumentURI());
+        fault.setMessage(message);
+        fault.setComparisonType(comparisonType);
         return fault;
     }
 
@@ -293,4 +329,12 @@ public class XMLComparator {
         }
         return result;
     }
+
+    private static ErrorType comparisonToError(ComparisonType compType){
+        ErrorType errorType = null;
+
+        return errorType;
+    }
+
+
 }

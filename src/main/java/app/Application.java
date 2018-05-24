@@ -38,28 +38,20 @@ public class Application {
             result = XMLComparator.diff(isDev, isProm);
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
         }
         System.out.println("Ошибки:");
-        for (MyPair<XMLError> error : result.getErrors() ) {
-            if(error.getFirst() != null){
-                System.out.println(error.getFirst().getXpath());
-            }
-            if(error.getSecond() != null){
-                System.out.println(error.getSecond().getXpath());
-            }
+        for (XMLError error : result.getErrors() ) {
+            System.out.println("XPath: " + error.getXpath());
+            System.out.println("ParentXPath: " + error.getParentXPath());
+            System.out.println("Type: " + error.getComparisonType());
+            System.out.println("Message: " + error.getMessage());
+            System.out.println();
         }
         System.out.println("Предупреждения:");
-        for (MyPair<XMLError> error : result.getWarnings() ) {
-            if(error.getFirst() != null){
-                System.out.println(error.getFirst().getXpath());
-            }
-            if(error.getSecond() != null){
-                System.out.println(error.getSecond().getXpath());
-            }
+        for (XMLError error : result.getWarnings() ) {
+            System.out.println(error.getXpath());
+            System.out.println(error.getType());
+            System.out.println(error.getMessage());
         }
         System.out.println("...end of diff");
 
