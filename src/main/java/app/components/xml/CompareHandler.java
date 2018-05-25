@@ -1,4 +1,4 @@
-package app.xml;
+package app.components.xml;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

@@ -1,4 +1,4 @@
-package app.xml;
+package app.components.xml;
 
 public class MyPair<T> {
     private T first;

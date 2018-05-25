@@ -1,9 +1,16 @@
-package app.xml;
+package app.components.model;
 
+import app.components.xml.ErrorType;
 import org.w3c.dom.Node;
 import org.xmlunit.diff.*;
 
+import javax.persistence.*;
+
+@Entity(name = "XmlError")
 public class XMLError{
+    @Id
+    @GeneratedValue
+    private Integer id;
     /**
      * XPath до нода в xml-файле
      */
@@ -12,21 +19,25 @@ public class XMLError{
     /**
      * XPath до нода в xml-файле не включая сам нод
      */
+    @Column(name = "parent_xpath")
     private String parentXPath;
 
     /**
      * Номер строки в xml
      */
-    private int lineNumber;
+    @Column(name = "line_number")
+    private Integer lineNumber;
 
     /**
      * Номер колонки в которой была ошибка
      */
-    private int columnNumber;
+    @Column(name = "column_number")
+    private Integer columnNumber;
 
     /**
      * Нод в файле
      */
+    @Transient
     private Node node;
 
     /**
@@ -39,7 +50,11 @@ public class XMLError{
      *
      * Тип ошибки
      */
+    @Transient
     private ErrorType type;
+
+    @Column(name = "error_type")
+    private String strType;
 
     /**
      *
@@ -107,6 +122,7 @@ public class XMLError{
 
     public void setType(ErrorType type) {
         this.type = type;
+        this.strType = type.name();
     }
 
     public String getSource() {
@@ -115,6 +131,15 @@ public class XMLError{
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getStrType() {
+        return strType;
+    }
+
+    public void setStrType(String strType) {
+        this.strType = strType;
+        this.type = ErrorType.valueOf(strType);
     }
 
     public XMLError() {

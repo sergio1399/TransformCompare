@@ -1,4 +1,6 @@
-package app.xml;
+package app.components.xml;
+
+import app.components.model.XMLError;
 
 import java.util.ArrayList;
 import java.util.List;

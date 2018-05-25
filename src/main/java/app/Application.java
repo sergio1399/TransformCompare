@@ -1,21 +1,16 @@
 package app;
 
-import app.xml.MyPair;
-import app.xml.XMLComparator;
-import app.xml.XMLCompareResult;
-import app.xml.XMLError;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import app.config.AppConfig;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Application {
 
     public static void main(String[] args) {
-        FileInputStream isDev = null;
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        ctx.register(AppConfig.class);
+        ctx.refresh();
+
+        /*FileInputStream isDev = null;
         FileInputStream isProm = null;
         if(args.length >= 2){
             try {
@@ -53,7 +48,7 @@ public class Application {
             System.out.println(error.getType());
             System.out.println(error.getMessage());
         }
-        System.out.println("...end of diff");
+        System.out.println("...end of diff");*/
 
     }
 }
