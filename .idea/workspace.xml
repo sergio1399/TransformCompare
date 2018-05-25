@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bad1212-026c-450e-90c4-3f75f240dbfb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/components/dao/XmlErrorDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/components/directory/CompareService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/config/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/app/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/xml/CompareHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/xml/CompareHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/xml/DocumentSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/xml/DocumentSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/xml/ErrorType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/xml/ErrorType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/xml/MyPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/xml/MyPair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/xml/XMLComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/xml/XMLComparator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/xml/XMLCompareResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/xml/XMLCompareResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/xml/XMLError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/model/XMLError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/components/dao/XmlErrorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/dao/XmlErrorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/components/directory/CompareService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/components/directory/CompareService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/AppConfig.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -46,8 +38,29 @@
       <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/app/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="39" lean-forward="true" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+            <state relative-caret-position="204">
+              <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CompareService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/app/components/directory/CompareService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,8 +71,8 @@
       <file leaf-file-name="AppConfig.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/app/config/AppConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="737">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
+            <state relative-caret-position="142">
+              <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,8 +83,8 @@
       <file leaf-file-name="XmlErrorDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/app/components/dao/XmlErrorDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="102">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -79,7 +92,7 @@
       <file leaf-file-name="XMLComparator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/app/components/xml/XMLComparator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
+            <state relative-caret-position="17">
               <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -441,13 +454,14 @@
         <option value="$PROJECT_DIR$/src/main/java/app/xml/ErrorType.java" />
         <option value="$PROJECT_DIR$/src/main/java/app/model/XMLError.java" />
         <option value="$PROJECT_DIR$/src/main/java/app/directory/CompareService.java" />
-        <option value="$PROJECT_DIR$/application.properties" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/app/components/model/XMLError.java" />
         <option value="$PROJECT_DIR$/src/main/java/app/config/JPAConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/app/config/AppConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/app/Application.java" />
         <option value="$PROJECT_DIR$/src/main/java/app/components/dao/XmlErrorDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/app/Application.java" />
+        <option value="$PROJECT_DIR$/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/app/components/directory/CompareService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/app/config/AppConfig.java" />
       </list>
     </option>
   </component>
@@ -565,6 +579,9 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Task\TransformerCompare" />
+      <recent name="C:\Task\TransformerCompare\src\main\java\app" />
+      <recent name="C:\Task\TransformerCompare\src" />
+      <recent name="C:\Task\TransformerCompare\src\main" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -653,12 +670,12 @@
       <workItem from="1526990409728" duration="2528000" />
       <workItem from="1527054646717" duration="28989000" />
       <workItem from="1527142120789" duration="26888000" />
-      <workItem from="1527228659985" duration="19202000" />
+      <workItem from="1527228659985" duration="23350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84208000" />
+    <option name="totallyTimeSpent" value="88356000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -681,11 +698,11 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40584415" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40584415" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Spring" weight="0.32900432" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13432837" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13432837" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32900432" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -990,13 +1007,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/app/components/directory/CompareService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/app/components/model/XMLError.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1027,33 +1037,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/app/components/xml/XMLComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/app/config/JPAConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="60" column="79" lean-forward="true" selection-start-line="60" selection-start-column="79" selection-end-line="60" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/app/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="39" lean-forward="true" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1089,15 +1076,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/app/components/dao/XmlErrorDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/app/components/xml/XMLComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/app/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="39" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/app/components/directory/CompareService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/app/config/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="737">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="142">
+          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

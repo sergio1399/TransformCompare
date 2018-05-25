@@ -1,10 +1,7 @@
 package app.config;
 
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.*;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -21,6 +18,7 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = { "app.components" })
+//@PropertySource("application.properties")
 @EnableTransactionManagement
 public class AppConfig {
 

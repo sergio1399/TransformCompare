@@ -1,6 +1,8 @@
 package app;
 
+import app.components.directory.CompareService;
 import app.config.AppConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Application {
@@ -9,7 +11,8 @@ public class Application {
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
         ctx.register(AppConfig.class);
         ctx.refresh();
-
+        CompareService compareService = ctx.getBean(CompareService.class);
+        compareService.execComparation();
         /*FileInputStream isDev = null;
         FileInputStream isProm = null;
         if(args.length >= 2){
