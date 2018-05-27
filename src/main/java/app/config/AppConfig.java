@@ -18,7 +18,7 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = { "app.components" })
-//@PropertySource("application.properties")
+@PropertySource("classpath:application.properties")
 @EnableTransactionManagement
 public class AppConfig {
 
